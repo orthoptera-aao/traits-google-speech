@@ -40,7 +40,7 @@ function googlespeech_analyse($recording) {
   global $system;
   $return = array();
   foreach ($system["googlspeech"]["languages"] as $language) {
-    if (!in_array($recording["id"].".".$language.".txt", $system["analyses"]["googlespeech"]) {
+    if (!in_array($recording["id"].".".$language.".txt", $system["analyses"]["googlespeech"])) {
       $file = core_download("flac/".$recording["id"].".44k.30min.flac");
       if ($file == NULL) {
         core_log("warning", "googlespeech",  "File was not available, skipping analysis.");
