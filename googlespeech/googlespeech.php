@@ -60,7 +60,7 @@ function googlespeech_analyse($recording) {
       core_log("info", "googlespeech", "Attempting analysis of $language for recording ".$recording["id"].".");
       core_log("info", "googlespeech", "Upload file to Google Cloud.");
       exec("gsutil cp scratch/flac/".$recording["id"].".44k.30min.flac gs://bioacoustica-speech", $output, $return_value);
-      if ($return == 0) {
+      if ($return_value == 0) {
         $results = transcribe_async_gcs('bioacoustica-speech', $recording["id"].".44k.30min.flac", $language);
         file_put_contents($recording["id"].".".$language.".txt", serialize($results));
         $return[$recording["id"].$lang.".txt"] = array(
