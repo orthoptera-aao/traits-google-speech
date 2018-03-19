@@ -14,7 +14,6 @@ function googlespeech_info() {
 
 function googlespeech_init() {
   $init = array(
-    )
   );
   return ($init);
 }
