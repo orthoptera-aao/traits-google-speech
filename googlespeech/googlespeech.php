@@ -1,6 +1,6 @@
 <?php
-include("modules/googlespeech/speech-async.php");
-include("modules/googlespeech/config/languages.php");
+include("modules/traits-googlespeech/googlespeech/speech-async.php");
+include("modules/traits-googlespeech/googlespeech/config/languages.php");
 
 function googlespeech_info() {
   return(
