@@ -14,6 +14,12 @@ function googlespeech_info() {
 
 function googlespeech_init() {
   $init = array(
+    "gsutil" => array(
+      "type" => "cmd",
+      "required" => "required",
+      "missing text" => "googlespeech requires gsutil",
+      "version flag" => "version"
+    )
   );
   return ($init);
 }
