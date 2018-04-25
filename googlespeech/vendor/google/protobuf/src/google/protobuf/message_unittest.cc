@@ -55,15 +55,15 @@
 
 #include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/stubs/common.h>
+#include <google/protobuf/stubs/io_win32.h>
 #include <google/protobuf/stubs/logging.h>
 #include <google/protobuf/testing/googletest.h>
 #include <gtest/gtest.h>
-#include <google/protobuf/stubs/io_win32.h>
 
 namespace google {
 namespace protobuf {
 
-#if defined(_WIN32)
+#if defined(_MSC_VER)
 // DO NOT include <io.h>, instead create functions in io_win32.{h,cc} and import
 // them like we do below.
 using google::protobuf::internal::win32::close;
@@ -408,7 +408,6 @@ TEST(MessageTest, MessageIsStillValidAfterParseFails) {
     EXPECT_EQ("", arena_message->optional_string());
   }
 }
-
 
 namespace {
 

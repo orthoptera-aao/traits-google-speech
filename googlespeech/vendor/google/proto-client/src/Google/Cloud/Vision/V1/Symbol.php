@@ -47,12 +47,6 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string text = 3;</code>
      */
     private $text = '';
-    /**
-     * Confidence of the OCR results for the symbol. Range [0, 1].
-     *
-     * Generated from protobuf field <code>float confidence = 4;</code>
-     */
-    private $confidence = 0.0;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Vision\V1\TextAnnotation::initOnce();
@@ -161,32 +155,6 @@ class Symbol extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->text = $var;
-
-        return $this;
-    }
-
-    /**
-     * Confidence of the OCR results for the symbol. Range [0, 1].
-     *
-     * Generated from protobuf field <code>float confidence = 4;</code>
-     * @return float
-     */
-    public function getConfidence()
-    {
-        return $this->confidence;
-    }
-
-    /**
-     * Confidence of the OCR results for the symbol. Range [0, 1].
-     *
-     * Generated from protobuf field <code>float confidence = 4;</code>
-     * @param float $var
-     * @return $this
-     */
-    public function setConfidence($var)
-    {
-        GPBUtil::checkFloat($var);
-        $this->confidence = $var;
 
         return $this;
     }

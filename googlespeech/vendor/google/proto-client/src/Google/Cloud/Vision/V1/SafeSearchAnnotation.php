@@ -18,9 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Represents the adult content likelihood for the image. Adult content may
-     * contain elements such as nudity, pornographic images or cartoons, or
-     * sexual activities.
+     * Represents the adult content likelihood for the image.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
@@ -40,20 +38,11 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $medical = 0;
     /**
-     * Likelihood that this image contains violent content.
+     * Violence likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
     private $violence = 0;
-    /**
-     * Likelihood that the request image contains racy content. Racy content may
-     * include (but is not limited to) skimpy or sheer clothing, strategically
-     * covered nudity, lewd or provocative poses, or close-ups of sensitive
-     * body areas.
-     *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
-     */
-    private $racy = 0;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
@@ -61,9 +50,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the adult content likelihood for the image. Adult content may
-     * contain elements such as nudity, pornographic images or cartoons, or
-     * sexual activities.
+     * Represents the adult content likelihood for the image.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      * @return int
@@ -74,9 +61,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the adult content likelihood for the image. Adult content may
-     * contain elements such as nudity, pornographic images or cartoons, or
-     * sexual activities.
+     * Represents the adult content likelihood for the image.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      * @param int $var
@@ -147,7 +132,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Likelihood that this image contains violent content.
+     * Violence likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      * @return int
@@ -158,7 +143,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Likelihood that this image contains violent content.
+     * Violence likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      * @param int $var
@@ -168,38 +153,6 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\Likelihood::class);
         $this->violence = $var;
-
-        return $this;
-    }
-
-    /**
-     * Likelihood that the request image contains racy content. Racy content may
-     * include (but is not limited to) skimpy or sheer clothing, strategically
-     * covered nudity, lewd or provocative poses, or close-ups of sensitive
-     * body areas.
-     *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
-     * @return int
-     */
-    public function getRacy()
-    {
-        return $this->racy;
-    }
-
-    /**
-     * Likelihood that the request image contains racy content. Racy content may
-     * include (but is not limited to) skimpy or sheer clothing, strategically
-     * covered nudity, lewd or provocative poses, or close-ups of sensitive
-     * body areas.
-     *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setRacy($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\Likelihood::class);
-        $this->racy = $var;
 
         return $this;
     }

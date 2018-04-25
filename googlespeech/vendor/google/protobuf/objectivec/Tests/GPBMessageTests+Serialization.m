@@ -42,6 +42,10 @@
 #import "google/protobuf/UnittestRuntimeProto2.pbobjc.h"
 #import "google/protobuf/UnittestRuntimeProto3.pbobjc.h"
 
+static NSData *DataFromCStr(const char *str) {
+  return [NSData dataWithBytes:str length:strlen(str)];
+}
+
 @interface MessageSerializationTests : GPBTestCase
 @end
 
@@ -974,16 +978,6 @@
   XCTAssertNotNil(error);
   XCTAssertEqualObjects(error.domain, GPBCodedInputStreamErrorDomain);
   XCTAssertEqual(error.code, GPBCodedInputStreamErrorRecursionDepthExceeded);
-}
-
-- (void)testParseDelimitedDataWithNegativeSize {
-  NSData *data = DataFromCStr("\xFF\xFF\xFF\xFF\x0F");
-  GPBCodedInputStream *input = [GPBCodedInputStream streamWithData:data];
-  NSError *error;
-  [GPBMessage parseDelimitedFromCodedInputStream:input
-                               extensionRegistry:nil
-                                           error:&error];
-  XCTAssertNil(error);
 }
 
 #ifdef DEBUG

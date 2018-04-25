@@ -1,17 +1,15 @@
 {
     "name": "google/gax",
     "type": "library",
-    "description": "Google API Core for PHP",
+    "description": "Google API Extensions for PHP",
     "keywords": ["google"],
     "homepage": "https://github.com/googleapis/gax-php",
     "license": "BSD-3-Clause",
     "require": {
         "php": ">=5.5",
-        "google/auth": "^1.2.0",
+        "google/auth": "~0.9|^1.0",
         "grpc/grpc": "^1.4",
-        "google/protobuf": "^3.5.1",
-        "guzzlehttp/promises": "^1.3",
-        "guzzlehttp/psr7": "^1.2"
+        "google/protobuf": "3.4.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8.36",
@@ -19,21 +17,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Api\\": "src/Api",
-            "Google\\ApiCore\\": "src/ApiCore",
-            "Google\\Cloud\\": "src/Cloud",
-            "Google\\Iam\\": "src/Iam",
-            "Google\\Jison\\": "src/Jison",
-            "Google\\LongRunning\\": "src/LongRunning",
-            "Google\\Rpc\\": "src/Rpc",
-            "Google\\Type\\": "src/Type",
-            "GPBMetadata\\Google\\": "metadata"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Google\\": "tests",
-            "GPBMetadata\\": "metadata"
+          "Google\\GAX\\":"src/",
+          "Google\\GAX\\UnitTests\\":"tests/",
+          "Google\\":"src/generated/Google/",
+          "GPBMetadata\\":"src/generated/GPBMetadata/"
         }
     }
 }

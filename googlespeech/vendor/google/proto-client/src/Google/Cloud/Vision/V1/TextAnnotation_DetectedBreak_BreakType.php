@@ -36,13 +36,14 @@ class TextAnnotation_DetectedBreak_BreakType
      */
     const EOL_SURE_SPACE = 3;
     /**
-     * End-line hyphen that is not present in text; does not co-occur with
-     * `SPACE`, `LEADER_SPACE`, or `LINE_BREAK`.
+     * End-line hyphen that is not present in text; does
      *
      * Generated from protobuf enum <code>HYPHEN = 4;</code>
      */
     const HYPHEN = 4;
     /**
+     * not co-occur with SPACE, LEADER_SPACE, or
+     * LINE_BREAK.
      * Line break that ends a paragraph.
      *
      * Generated from protobuf enum <code>LINE_BREAK = 5;</code>

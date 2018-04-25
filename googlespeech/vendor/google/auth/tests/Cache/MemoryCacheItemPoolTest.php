@@ -18,10 +18,9 @@
 namespace Google\Auth\Tests;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
-use PHPUnit\Framework\TestCase;
 use Psr\Cache\InvalidArgumentException;
 
-class MemoryCacheItemPoolTest extends TestCase
+class MemoryCacheItemPoolTest extends \PHPUnit_Framework_TestCase
 {
     private $pool;
 

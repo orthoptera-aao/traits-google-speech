@@ -22,7 +22,8 @@ class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
      */
     private $url = '';
     /**
-     * (Deprecated) Overall relevancy score for the image.
+     * Overall relevancy score for the image.
+     * Not normalized and not comparable across different image queries.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
@@ -60,7 +61,8 @@ class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Deprecated) Overall relevancy score for the image.
+     * Overall relevancy score for the image.
+     * Not normalized and not comparable across different image queries.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      * @return float
@@ -71,7 +73,8 @@ class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Deprecated) Overall relevancy score for the image.
+     * Overall relevancy score for the image.
+     * Not normalized and not comparable across different image queries.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      * @param float $var

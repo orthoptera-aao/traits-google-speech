@@ -167,13 +167,6 @@ class ConformanceTestSuite {
                          const string& equivalent_text_format,
                          conformance::WireFormat requested_output,
                          bool isProto3);
-  void RunValidBinaryInputTest(const string& test_name,
-                               ConformanceLevel level,
-                               const string& input,
-                               conformance::WireFormat input_format,
-                               const string& equivalent_wire_format,
-                               conformance::WireFormat requested_output,
-                               bool isProto3);
   void RunValidJsonTest(const string& test_name,
                         ConformanceLevel level,
                         const string& input_json,
@@ -187,10 +180,6 @@ class ConformanceTestSuite {
                             const string& input_protobuf,
                             const string& equivalent_text_format,
                             bool isProto3);
-  void RunValidBinaryProtobufTest(const string& test_name,
-                                  ConformanceLevel level,
-                                  const string& input_protobuf,
-                                  bool isProto3);
   void RunValidProtobufTestWithMessage(
       const string& test_name, ConformanceLevel level,
       const Message *input,
@@ -223,9 +212,6 @@ class ConformanceTestSuite {
   template <class MessageType>
   void TestOneofMessage (MessageType &message,
                          bool isProto3);
-  template <class MessageType>
-  void TestUnknownMessage (MessageType &message,
-                           bool isProto3);
   void TestValidDataForType(
       google::protobuf::FieldDescriptor::Type,
       std::vector<std::pair<std::string, std::string>> values);

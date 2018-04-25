@@ -62,11 +62,11 @@ function googlespeech_analyse($recording) {
       exec("gsutil cp scratch/flac/".$recording["id"].".44k.30min.flac gs://bioacoustica-speech", $output, $return_value);
       if ($return_value == 0) {
         $results = transcribe_async_gcs('bioacoustica-speech', $recording["id"].".44k.30min.flac", $language);
-        file_put_contents($recording["id"].".".$language.".txt", serialize($results));
-        $return[$recording["id"].$lang.".txt"] = array(
+        file_put_contents("modules/traits-googlespeech/googlespeech/".$recording["id"].".".$language.".txt", serialize($results));
+        $return[$recording["id"].$language.".txt"] = array(
           "file name" => $recording["id"].".".$language.".txt",
-          "local path" => "modules/googlespeech/",
-          "save path" => "googlespeech"
+          "local path" => "modules/traits-googlespeech/googlespeech/",
+          "save path" => "googlespeech/"
         );
           exec("gsutil rm gs://bioacoustica-speech/".$recording["id"].".44k.30min.flac");
       } else {

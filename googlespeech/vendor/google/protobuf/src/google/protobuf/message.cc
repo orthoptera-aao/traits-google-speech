@@ -170,12 +170,12 @@ size_t Message::SpaceUsedLong() const {
 
 bool Message::SerializeToFileDescriptor(int file_descriptor) const {
   io::FileOutputStream output(file_descriptor);
-  return SerializeToZeroCopyStream(&output) && output.Flush();
+  return SerializeToZeroCopyStream(&output);
 }
 
 bool Message::SerializePartialToFileDescriptor(int file_descriptor) const {
   io::FileOutputStream output(file_descriptor);
-  return SerializePartialToZeroCopyStream(&output) && output.Flush();
+  return SerializePartialToZeroCopyStream(&output);
 }
 
 bool Message::SerializeToOstream(std::ostream* output) const {
@@ -463,7 +463,7 @@ namespace internal {
 template<>
 #if defined(_MSC_VER) && (_MSC_VER >= 1800)
 // Note: force noinline to workaround MSVC compiler bug with /Zc:inline, issue #240
-GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE
+GOOGLE_ATTRIBUTE_NOINLINE
 #endif
 Message* GenericTypeHandler<Message>::NewFromPrototype(
     const Message* prototype, google::protobuf::Arena* arena) {
@@ -472,7 +472,7 @@ Message* GenericTypeHandler<Message>::NewFromPrototype(
 template<>
 #if defined(_MSC_VER) && (_MSC_VER >= 1800)
 // Note: force noinline to workaround MSVC compiler bug with /Zc:inline, issue #240
-GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE
+GOOGLE_ATTRIBUTE_NOINLINE
 #endif
 google::protobuf::Arena* GenericTypeHandler<Message>::GetArena(
     Message* value) {
@@ -481,7 +481,7 @@ google::protobuf::Arena* GenericTypeHandler<Message>::GetArena(
 template<>
 #if defined(_MSC_VER) && (_MSC_VER >= 1800)
 // Note: force noinline to workaround MSVC compiler bug with /Zc:inline, issue #240
-GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE
+GOOGLE_ATTRIBUTE_NOINLINE
 #endif
 void* GenericTypeHandler<Message>::GetMaybeArenaPointer(
     Message* value) {

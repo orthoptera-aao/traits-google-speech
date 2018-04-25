@@ -20,9 +20,8 @@ namespace Google\Auth\Tests;
 use google\appengine\api\app_identity\AppIdentityService;
 // included from tests\mocks\AppIdentityService.php
 use Google\Auth\Credentials\AppIdentityCredentials;
-use PHPUnit\Framework\TestCase;
 
-class AppIdentityCredentialsOnAppEngineTest extends TestCase
+class AppIdentityCredentialsOnAppEngineTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsFalseByDefault()
     {
@@ -42,7 +41,7 @@ class AppIdentityCredentialsOnAppEngineTest extends TestCase
     }
 }
 
-class AppIdentityCredentialsGetCacheKeyTest extends TestCase
+class AppIdentityCredentialsGetCacheKeyTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldBeEmpty()
     {
@@ -51,7 +50,7 @@ class AppIdentityCredentialsGetCacheKeyTest extends TestCase
     }
 }
 
-class AppIdentityCredentialsFetchAuthTokenTest extends TestCase
+class AppIdentityCredentialsFetchAuthTokenTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldBeEmptyIfNotOnAppEngine()
     {
