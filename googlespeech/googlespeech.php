@@ -100,12 +100,10 @@ function googlespeech_analyse($recording) {
         $return[$recording["id"].$lang.".txt.words"] = array(
           "file name" => $recording["id"].".".$language.".txt.words",
           "local path" => "scratch/googlespeech/",
-          "save path" => "googlespeech
+          "save path" => "googlespeech"
         );
       }
     }
   }
-  
-  
-  return($return);
+return($return);
 }
