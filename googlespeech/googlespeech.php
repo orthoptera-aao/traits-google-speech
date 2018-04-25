@@ -50,7 +50,7 @@ function googlespeech_analyse($recording) {
       $file = core_download("flac/".$recording["id"].".44k.30min.flac");
       if ($file == NULL) {
         core_log("warning", "googlespeech",  "File was not available, skipping analysis.");
-        return($return);
+        return($return); //TODO: continue;
       }
       $return[$recording["id"].".wav"] = array(
         "file name" => $recording["id"].".44k.30min.flac",
@@ -71,6 +71,37 @@ function googlespeech_analyse($recording) {
           exec("gsutil rm gs://bioacoustica-speech/".$recording["id"].".44k.30min.flac");
       } else {
         core_log("warning", "googlespeech", "Could not upload to Google Cloud: ".serialize($output));
+      }
+    }
+    if (!in_array($recording["id"].".".$language.".txt.words", $system["analyses"]["googlespeech"])) {
+      $file = core_download("googlespeech/".$recording["id"].".".$language.".txt");
+      if ($file == NULL) {
+       core_log("warning", "googlespecch",  $recording["id"].".".$language.".txt is unavailable.");
+      } else {
+        $return[$recording["id"].$lang.".txt"] = array(
+          "file name" => $recording["id"].".".$language.".txt",
+          "local path" => "scratch/googlespeech/",
+          "save path" => NULL
+        );
+        
+        $json_string = file_get_contents("scratch/googlespeech/".$recording["id"].".".$language.".txt");
+        $json = unserialize($json_string);
+        $fp = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words", "w");
+        foreach ($json as $result) {
+          $alternative = $result->alternatives()[0];
+          foreach ($alternative['words'] as $wordInfo) {
+            if ($wordInfo['startTime'] == '') {
+              continue;
+            } 
+            fputcsv($fp, array($wordInfo['startTime'], $wordInfo['endTime'], $wordInfo['word']));
+          }
+        }
+        fclose($fp);
+        $return[$recording["id"].$lang.".txt.words"] = array(
+          "file name" => $recording["id"].".".$language.".txt.words",
+          "local path" => "scratch/googlespeech/",
+          "save path" => "googlespeech
+        );
       }
     }
   }
