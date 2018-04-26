@@ -143,7 +143,7 @@ function googlespeech_analyse($recording) {
           }
           $position++;
         }
-        $fq = fopen(".$recording["id"].".".$language.".txt.words.sections", "w");
+        $fq = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words.sections", "w");
         foreach ($sections as $section) {
           fputcsv($fq, $section);
           fputcsv($fa, $section);
