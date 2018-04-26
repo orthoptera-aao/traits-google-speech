@@ -45,6 +45,8 @@ function googlespeech_prepare() {
 function googlespeech_analyse($recording) {
   global $system;
   $return = array();
+  $fh_sections = fopen("scratch/googlespeech/".$recording["id"].".txt.words.sections", "w");
+  $sections_updated = FALSE;
   foreach ($system["googlespeech"]["languages"] as $language) {
     if (!in_array($recording["id"].".".$language.".txt", $system["analyses"]["googlespeech"])) {
       $file = core_download("flac/".$recording["id"].".44k.30min.flac");
@@ -73,7 +75,8 @@ function googlespeech_analyse($recording) {
         core_log("warning", "googlespeech", "Could not upload to Google Cloud: ".serialize($output));
       }
     }
-    if (!in_array($recording["id"].".".$language.".txt.words.sections", $system["analyses"]["googlespeech"])) {
+    if (!in_array($recording["id"].".txt.words.sections", $system["analyses"]["googlespeech"])) {
+      $sections_updated = TRUE;
       $file = core_download("googlespeech/".$recording["id"].".".$language.".txt");
       if ($file == NULL) {
        core_log("warning", "googlespecch",  $recording["id"].".".$language.".txt is unavailable.");
@@ -146,7 +149,7 @@ function googlespeech_analyse($recording) {
         $fq = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words.sections", "w");
         foreach ($sections as $section) {
           fputcsv($fq, $section);
-          fputcsv($fa, $section);
+          fputcsv($fh_sections, $section);
         }
         fclose($fq);
         $return[$recording["id"].$language.".txt.words.sections"] = array(
@@ -154,8 +157,18 @@ function googlespeech_analyse($recording) {
           "local path" => "scratch/googlespeech/",
           "save path" => "googlespeech/"
         );
+        
+        
       }
     }
+  }
+  flcose($fh_sections);
+  if ($sections_updated == TRUE) {
+    $return[$recording["id"].$language.".txt.words.sections"] = array(
+          "file name" => $recording["id"].".txt.words.sections",
+          "local path" => "scratch/googlespeech/",
+          "save path" => "googlespeech/"
+        );
   }
 return($return);
 }
