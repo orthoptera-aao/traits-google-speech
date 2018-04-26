@@ -114,7 +114,7 @@ function googlespeech_analyse($recording) {
         fclose($fp);
 
         if (count($words)==0) {
-          continue; 
+          //continue; 
         }
 
         $sections = array();
