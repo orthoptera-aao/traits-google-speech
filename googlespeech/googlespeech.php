@@ -162,7 +162,7 @@ function googlespeech_analyse($recording) {
       }
     }
   }
-  flcose($fh_sections);
+  fclose($fh_sections);
   if ($sections_updated == TRUE) {
     $return[$recording["id"].".txt.words.sections"] = array(
           "file name" => $recording["id"].".txt.words.sections",
