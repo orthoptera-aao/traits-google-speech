@@ -75,7 +75,7 @@ function googlespeech_analyse($recording) {
         core_log("warning", "googlespeech", "Could not upload to Google Cloud: ".serialize($output));
       }
     }
-    if (!in_array($recording["id"].".txt.words.sections", $system["analyses"]["googlespeech"])) {
+    if (!in_array($recording["id"].".".$language.".".txt.words.sections", $system["analyses"]["googlespeech"])) {
       $sections_updated = TRUE;
       $file = core_download("googlespeech/".$recording["id"].".".$language.".txt");
       if ($file == NULL) {
