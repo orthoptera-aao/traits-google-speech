@@ -73,7 +73,7 @@ function googlespeech_analyse($recording) {
         core_log("warning", "googlespeech", "Could not upload to Google Cloud: ".serialize($output));
       }
     }
-    if (!in_array($recording["id"].".".$language.".txt.words", $system["analyses"]["googlespeech"])) {
+    if (!in_array($recording["id"].".".$language.".txt.words.sections", $system["analyses"]["googlespeech"])) {
       $file = core_download("googlespeech/".$recording["id"].".".$language.".txt");
       if ($file == NULL) {
        core_log("warning", "googlespecch",  $recording["id"].".".$language.".txt is unavailable.");
@@ -99,6 +99,58 @@ function googlespeech_analyse($recording) {
         fclose($fp);
         $return[$recording["id"].$language.".txt.words"] = array(
           "file name" => $recording["id"].".".$language.".txt.words",
+          "local path" => "scratch/googlespeech/",
+          "save path" => "googlespeech/"
+        );
+        
+        //Sections
+        $words= array();
+        $fp = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words");
+        while ($row = fgetcsv($fp)) {
+          $row[0] = filter_var($row[0], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+          $row[1] = filter_var($row[1], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+          $words[] = $row;
+        }
+        fclose($fp);
+
+        if (count($words)==0) {
+          continue; 
+        }
+
+        $sections = array();
+
+        $block_start = NULL;
+        $previous_time = NULL;
+        $word_count = count($words);
+        $position = 1;
+
+        foreach($words as $word) {
+          if ($block_start == NULL) {
+            $block_start = $word[0];
+          }
+          if ($previous_time == NULL) {
+            $previous_time = $word[1];
+          }
+          if ($previous_time + 1 >= $word[0]) {
+            $previous_time = $word[1];
+          } else {
+            $sections[] = array($block_start, $previous_time);
+            $block_start = NULL;
+            $previous_time = NULL;
+          }
+          if ($position == $word_count) {
+            $sections[] =  array($block_start, $word[1]);
+          }
+          $position++;
+        }
+        $fq = fopen(".$recording["id"].".".$language.".txt.words.sections", "w");
+        foreach ($sections as $section) {
+          fputcsv($fq, $section);
+          fputcsv($fa, $section);
+        }
+        fclose($fq);
+        $return[$recording["id"].$language.".txt.words.sections"] = array(
+          "file name" => $recording["id"].".".$language.".txt.words.sections",
           "local path" => "scratch/googlespeech/",
           "save path" => "googlespeech/"
         );
