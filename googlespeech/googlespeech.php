@@ -164,7 +164,7 @@ function googlespeech_analyse($recording) {
   }
   flcose($fh_sections);
   if ($sections_updated == TRUE) {
-    $return[$recording["id"].$language.".txt.words.sections"] = array(
+    $return[$recording["id"].".txt.words.sections"] = array(
           "file name" => $recording["id"].".txt.words.sections",
           "local path" => "scratch/googlespeech/",
           "save path" => "googlespeech/"
