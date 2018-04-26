@@ -78,7 +78,7 @@ function googlespeech_analyse($recording) {
       if ($file == NULL) {
        core_log("warning", "googlespecch",  $recording["id"].".".$language.".txt is unavailable.");
       } else {
-        $return[$recording["id"].$lang.".txt"] = array(
+        $return[$recording["id"].$language.".txt"] = array(
           "file name" => $recording["id"].".".$language.".txt",
           "local path" => "scratch/googlespeech/",
           "save path" => NULL
@@ -97,7 +97,7 @@ function googlespeech_analyse($recording) {
           }
         }
         fclose($fp);
-        $return[$recording["id"].$lang.".txt.words"] = array(
+        $return[$recording["id"].$language.".txt.words"] = array(
           "file name" => $recording["id"].".".$language.".txt.words",
           "local path" => "scratch/googlespeech/",
           "save path" => "googlespeech"
