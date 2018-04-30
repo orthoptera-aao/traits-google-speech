@@ -110,7 +110,7 @@ function googlespeech_analyse($recording) {
         
         //Sections
         $words= array();
-        $fp = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words", "w");
+        $fp = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words", "r");
         while ($row = fgetcsv($fp)) {
           $row[0] = filter_var($row[0], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
           $row[1] = filter_var($row[1], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
