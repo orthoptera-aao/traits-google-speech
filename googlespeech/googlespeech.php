@@ -79,7 +79,7 @@ function googlespeech_analyse($recording) {
       $sections_updated = TRUE;
       $file = core_download("googlespeech/".$recording["id"].".".$language.".txt");
       if ($file == NULL) {
-       core_log("warning", "googlespecch",  $recording["id"].".".$language.".txt is unavailable.");
+       core_log("warning", "googlespeech",  $recording["id"].".".$language.".txt is unavailable.");
       } else {
         $return[$recording["id"].$language.".txt"] = array(
           "file name" => $recording["id"].".".$language.".txt",
@@ -168,6 +168,12 @@ function googlespeech_analyse($recording) {
           "file name" => $recording["id"].".txt.words.sections",
           "local path" => "scratch/googlespeech/",
           "save path" => "googlespeech/"
+        );
+  } else {
+    $return[$recording["id"].".txt.words.sections"] = array(
+          "file name" => $recording["id"].".txt.words.sections",
+          "local path" => "scratch/googlespeech/",
+          "save path" => NULL
         );
   }
   if (!in_array($recording["id"].".speech_removed.wav", $system["analyses"]["googlespeech"])) {
