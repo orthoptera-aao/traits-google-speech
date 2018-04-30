@@ -181,7 +181,7 @@ function googlespeech_analyse($recording) {
     if ($wav == NULL) {
       core_log("warning", "googlespeech", "Wav file not available.");
     } else {
-      $sections = core_download($recording["id"].".txt.words.sections");
+      $sections = core_download("googlespeech/".$recording["id"].".txt.words.sections");
       if ($sections = NULL) {
         core_log("warning", "googlespeech", "Sections file not available.");
       } else {
