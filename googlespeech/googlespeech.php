@@ -94,12 +94,12 @@ function googlespeech_analyse($recording) {
         $fp = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words", "w");
         foreach ($json as $result) {
           print_r($result->alternatives()[0]);exit;
-          $alternative = $result->alternatives()[0];
           foreach ($alternative['words'] as $wordInfo) {
             if ($wordInfo['startTime'] == '') {
               continue;
             } 
             fputcsv($fp, array($wordInfo['startTime'], $wordInfo['endTime'], $wordInfo['word']));
+            print_r($wordInfo);exit;
           }
         }
         fclose($fp);
