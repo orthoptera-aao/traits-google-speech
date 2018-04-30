@@ -170,5 +170,27 @@ function googlespeech_analyse($recording) {
           "save path" => "googlespeech/"
         );
   }
+  if (!in_array($recording["id"].".speech_removed.wav") {
+    $wav = core_download("wav/".$recording["id"].".wav");
+    if ($wav == NULL) {
+      core_log("warning", "googlespeech", "Wav file not available.");
+    } else {
+      $sections = core_download($recording["id"].".txt.words.sections");
+      if ($sections = NULL) {
+        core_log("warning", "googlespeech", "Sections file not available.");
+      } else {
+        core_log("info", "googlespeech", "Need to remove speech.");
+        exec("Rscript modules/traits-googlespeech/googlespeech/remove_speech.R ".$recording["id"], $output, $return_value);
+        if ($return_value == 0) {
+          $return[$recording["id"].".wav"] = array(
+          "file name" => $recording["id"].".speech_removed.wav",
+          "local path" => "scratch/googlespeech/",
+          "save path" => "googlespeech/"
+        );
+        }
+      }
+    }
+    
+  }
 return($return);
 }
