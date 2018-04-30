@@ -99,7 +99,6 @@ function googlespeech_analyse($recording) {
               continue;
             } 
             fputcsv($fp, array($wordInfo['startTime'], $wordInfo['endTime'], $wordInfo['word']));
-            print_r($wordInfo);exit;
           }
         }
         fclose($fp);
@@ -108,6 +107,8 @@ function googlespeech_analyse($recording) {
           "local path" => "scratch/googlespeech/",
           "save path" => "googlespeech/"
         );
+        
+        exit;
         
         //Sections
         $words= array();
