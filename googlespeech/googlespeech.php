@@ -108,8 +108,6 @@ function googlespeech_analyse($recording) {
           "save path" => "googlespeech/"
         );
         
-        exit;
-        
         //Sections
         $words= array();
         $fp = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words", "w");
