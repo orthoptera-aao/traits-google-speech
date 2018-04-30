@@ -170,7 +170,7 @@ function googlespeech_analyse($recording) {
           "save path" => "googlespeech/"
         );
   }
-  if (!in_array($recording["id"].".speech_removed.wav")) {
+  if (!in_array($recording["id"].".speech_removed.wav", $system["analyses"]["googlespeech"])) {
     $wav = core_download("wav/".$recording["id"].".wav");
     if ($wav == NULL) {
       core_log("warning", "googlespeech", "Wav file not available.");
