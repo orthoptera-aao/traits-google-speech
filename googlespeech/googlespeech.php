@@ -2,6 +2,11 @@
 include("modules/traits-googlespeech/googlespeech/speech-async.php");
 include("modules/traits-googlespeech/googlespeech/config/languages.php");
 
+require_once "vendor/autoload.php";
+use Google\Cloud\Speech\SpeechClient;
+use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Core\ExponentialBackoff;
+
 function googlespeech_info() {
   return(
     array(
