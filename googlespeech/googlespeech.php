@@ -93,7 +93,7 @@ function googlespeech_analyse($recording) {
         $json = unserialize($json_string);
         $fp = fopen("scratch/googlespeech/".$recording["id"].".".$language.".txt.words", "w");
         foreach ($json as $result) {
-          print_r($result->alternatives()[0]);exit;
+          $alternative = $result->alternatives()[0];
           foreach ($alternative['words'] as $wordInfo) {
             if ($wordInfo['startTime'] == '') {
               continue;
