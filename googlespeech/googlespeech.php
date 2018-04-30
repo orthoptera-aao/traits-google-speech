@@ -44,6 +44,7 @@ function googlespeech_prepare() {
 }
 
 function googlespeech_analyse($recording) {
+  $recording["id"]=10000;
   global $system;
   $return = array();
   $fh_sections = fopen("scratch/googlespeech/".$recording["id"].".txt.words.sections", "w");
